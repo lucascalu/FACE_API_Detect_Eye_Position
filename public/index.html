@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deteção de Olhos</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-image: url('a.png'); /* Substitua pelo caminho real da sua imagem */
+      background-size: cover;
+      background-position: center;
+      font-family: Arial, sans-serif;
+      color: #fff; /* Cor do texto para contraste com o plano de fundo */
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+    }
+
+    #eyePositions {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Deteção de Olhos</h1>
+  <div id="eyePositions"></div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    const socket = io();
+
+    socket.on('eyePositions', (eyePositions) => {
+      document.getElementById('eyePositions').innerText = `Posição dos olhos: Left ${eyePositions.left.toFixed(2)}, Right ${eyePositions.right.toFixed(2)}`;
+    });
+  </script>
+</body>
+</html>
